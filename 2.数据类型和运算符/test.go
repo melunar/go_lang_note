@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "unsafe"
 
 // 这种因式分解关键字的写法一般用于声明全局变量
 var (
@@ -147,8 +148,58 @@ func main() {
 	fmt.Println("")
 
 
-	// fmt.Println("")
-	// fmt.Println("")
+	fmt.Println("常量")
+	const LENGTH int = 10
+	const WIDTH int = 5
+	// LENGTH = 100 // error
+	var area int = LENGTH * WIDTH
+	// 常量用作枚举
+	// todo 常量表达式中，函数必须是内置函数，否则编译不过
+	const (
+    A_5 = "abc"
+    B_5 = len(A_5) // len 长度内置函数
+    C_5 = unsafe.Sizeof(A_5)
+	)
+	fmt.Println(area, A_5, B_5, C_5)
+	fmt.Println("")
+
+
+	fmt.Println("iota")
+	/*
+		iota，特殊常量，可以认为是一个可以被编译器修改的常量。
+		iota 在 const关键字出现时将被重置为 0(const 内部的第一行之前)，const 中每新增一行常量声明将使 iota 计数一次(iota 可理解为 const 语句块中的行索引)。
+		iota 可以被用作枚举值
+	*/
+	const (
+		iota_a = iota   //0
+		iota_b = iota   //1 等价于: iota_b
+		iota_c          //2
+		iota_d = "ha"   //独立值，iota += 1
+		iota_e          //"ha"   iota += 1
+		iota_f = 100    //iota +=1
+		iota_g          //100  iota +=1
+		iota_h = iota   //7,恢复计数
+		iota_i          //8
+	)
+	fmt.Println(iota_a, iota_b, iota_c, iota_d, iota_e, iota_f, iota_g, iota_h, iota_i)
+	fmt.Println("")
+
+
+
+	fmt.Println("运算符")
+	// 同于大部分预研的算数运算符：+ - * / % ++ -- (注意只能用作a++，a--, ++和--不能用作前置--a)
+	var y_1 = 10
+	var y_2 = false
+	var y_4 = 11
+	// 关系运算符 == >= <= != > <
+	// var y_3 bool = y_1 == y_2 非同类型变量 无法比较
+	var y_5 bool = y_1 == y_4
+	// 逻辑运算符 && || ! 只能对条件表达式操作
+	// var y_6 = !y_1 // error
+	var y_7 = !y_2
+	var y_8 = !(10 > 1)
+	fmt.Println(y_1, y_2, y_5, y_7, y_8)
+	fmt.Println()
 }
 
 // v_name1 := 100 // := 不带声明格式的声明必须是函数内部变量
