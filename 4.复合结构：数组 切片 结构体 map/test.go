@@ -120,8 +120,6 @@ func sliceFoo1 () {
 	fmt.Println("numbers[1:2] ==", numbers[1:2])
 	/* 默认下限为 0*/
 	fmt.Println("numbers[:3] ==", numbers[:3])
-
-	
 }
 
 func printSlice(x []int){
@@ -152,6 +150,25 @@ func sliceFoo2()  {
 	printSlice(numbers1)  
 
 }
+// Map 是一种无序的键值对的集合。Map 最重要的一点是通过 key 来快速检索数据，key 类似于索引，指向数据的值。
+// Map 是一种集合，所以我们可以像迭代数组和切片那样迭代它
+// 声明：var map_variable map[key_data_type]value_data_type
+// make函数声明：map_variable := make(map[key_data_type]value_data_type)
+func mapFoo1 () {
+	var citys map[string]string
+	citys = make(map[string]string)
+	citys["France"] = "Paris"
+	citys["China"] = "Beijing"
+	citys["Japan"] = "Tokyo"
+
+	// 用range遍历
+	for k,v:=range citys {
+		fmt.Printf("%s's caption is %s\n", k, v)
+	}
+	// delete 函数 删除集合的元素
+	delete(citys, "Japan")
+	fmt.Println(citys)
+}
 
 func main() {
 	fmt.Println("数组")
@@ -169,6 +186,8 @@ func main() {
 	sliceFoo1()
 	fmt.Println("")
 	sliceFoo2()
+	fmt.Println("Map")
+	mapFoo1()
 	fmt.Println("")
 	fmt.Println("")
 }
