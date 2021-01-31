@@ -186,6 +186,21 @@ func main() {
 
 
 
+	fmt.Println("类型转换")
+	// type_name(expression)
+	// go 不支持隐式转换 程序应严格遵守变量类型格式
+	func () {
+		var sum int = 17
+		var count int = 5
+		var mean float32
+		
+		mean = float32(sum)/float32(count)
+		fmt.Printf("mean 的值为: %f\n",mean)
+		// fmt.Println(bool(sum)) // int 无法转成布尔值
+	}()
+	fmt.Println("")
+	fmt.Println("")
+	fmt.Println("")
 	fmt.Println("运算符")
 	// 同于大部分预研的算数运算符：+ - * / % ++ -- (注意只能用作a++，a--, ++和--不能用作前置--a)
 	var y_1 = 10
