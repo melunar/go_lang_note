@@ -67,6 +67,23 @@ func scoreSearch() {
 		}
 }
 
+// range 关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中它返回元素的索引和索引对应的值，在集合中返回 key-value 对
+func rangeFoo1() {
+	var nums = []int {2,3,4}
+	var sum = 0
+	for i, num := range nums {
+		fmt.Printf("nums[%d] = %d\n", i, num)
+		sum += num
+	}
+	fmt.Println("sum, ", sum)
+
+	var kvs = map[string]string {"a": "a1", "b": "bb"}
+	for k, v := range kvs {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
+	
+}
+
 // 函数支持返回多个参数
 func swap(x int, y string) (string, int) {
 	return y, x
@@ -115,5 +132,8 @@ func main() {
 	var x2 = "go"
 	X1, X2 := swap(x1, x2)
 	fmt.Println(X1, X2)
-	// fmt.Println("")
+	fmt.Println("")
+	fmt.Println("范围 range")
+	rangeFoo1()
+	fmt.Println("")
 }
